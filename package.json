@@ -1,0 +1,14 @@
+{
+  "name": "weather-live",
+  "version": "0.0.1 Alpha",
+  "description": "",
+  "main": "app.js",
+  "type": "module",
+  "dependencies": {
+    "discord.js": "^12.5.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jordon"
+}
