@@ -39,5 +39,5 @@ function commands() {
 
 } // End of export function
 
-client.login(token);
+client.login(process.env.DJS_TOKEN);
 export default commands;
