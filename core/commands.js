@@ -1,6 +1,6 @@
 import Discord from 'discord.js';
 import fs from 'fs';
-const json = fs.readFileSync("./core/config.json");
+const json = JSON.parse(fs.readFileSync("./core/config.json").toString());
 const token = json.token;
 const prefix = json.prefix;
 const client = new Discord.Client();
