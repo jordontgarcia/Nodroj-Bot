@@ -1,2 +1,2 @@
-import commands from './core/commands.js';
+import commands from './core/index.js';
 let clientCommands = commands();
