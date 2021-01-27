@@ -40,8 +40,7 @@ client.on("message", async (message) => {
                 return weather;
             };
             let weatherData = await getWeatherData();
-            if (args.includes(/\d/))
-                return;
+
             // Displaying specific city general weather
             const weatherEmbedCity = new Discord.MessageEmbed()
                 .setColor('#00fbff')
@@ -52,8 +51,7 @@ client.on("message", async (message) => {
                 .setFooter("Weather Live. ")
                 .setTimestamp();
 
-            message.channel.send(weatherEmbedCity), console.log(`[Weather City Request] ${message.member.user.tag} Requested Weather data from "${args.join(' ')}". Discord ID [${message.member.id}].`);;
-            // message.channel.send(`The current weather for ${weatherData.name}, ${weatherData.sys.country} is ${weatherData.main.temp} degrees Fahrenheit, and feels like ${weatherData.main.feels_like} degrees Fahrenheit.`);
+            message.channel.send(weatherEmbedCity), console.log(`[Weather City Request] ${message.member.user.tag} Requested Weather data from "${args.join(' ')}". Discord ID [${message.member.id}].`);
         }
     }
 });
