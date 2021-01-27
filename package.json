@@ -1,14 +1,16 @@
 {
   "name": "weather-live",
-  "version": "0.0.2 Alpha",
+  "version": "0.0.3 Alpha",
   "description": "",
-  "main": "app.js",
+  "main": "index.js",
   "type": "module",
   "dependencies": {
-    "discord.js": "^12.5.1"
+    "axios": "^0.21.1",
+    "discord.js": "^12.5.1",
+    "weather-js": "^2.0.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "https://github.com/jordongarcia"
+  "author": "Jordon"
 }
