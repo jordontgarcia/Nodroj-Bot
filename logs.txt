@@ -1,0 +1,1 @@
+[Weather City Request] User#0000 Requested Weather data from "ExampleCity" - Discord ID [000000000000000000]
