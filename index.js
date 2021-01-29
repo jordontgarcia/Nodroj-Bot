@@ -1,6 +1,6 @@
 import Discord from 'discord.js';
-import axios from 'axios';
 import fs from 'fs';
+import weatherData from './commands/weather.js';
 const json = JSON.parse(fs.readFileSync("./config/config.json"));
 const APIAuth = json.APIKEY;
 const token = json.token;
@@ -17,7 +17,7 @@ const weatherEmbedMain = new Discord.MessageEmbed()
     .setColor('#00fbff')
     .setTitle('Weather Live GitHub Repository')
     .setURL('https://github.com/JordonGarcia/WeatherBotDiscord')
-    .setDescription('To view a given cities general weather, use the command .Weather "CityName". For example, you can do ".Weather Los Angeles" for Los Angeles California\'s current general weather conditions.')
+    .setDescription('To view a given cities general weather, use the command .Weather "CityName". For example, you can do ".Weather Miami" for Miami Florida\'s current general weather conditions.')
     .setImage('https://cdn.dribbble.com/users/823181/screenshots/14958600/media/3b0cf90e738110f6def69aadacc4fc4b.png?compress=1&resize=1000x750')
     .setTimestamp()
     .setFooter('Weather Live.');
@@ -29,32 +29,16 @@ client.on("message", async (message) => {
     let command = args.shift();
 
     switch (command) {
-        case 'weatherhelp': {
+        case 'weatherhelp':
             message.channel.send(weatherEmbedMain);
             break;
-        }
-        case 'weather': {
-            let getWeatherData = async () => {
-                let response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${args.join(' ')}&appid=${APIAuth}&units=imperial`);
-                let weather = response.data;
-                return weather;
-            };
-            let weatherData = await getWeatherData();
 
-            // Displaying specific city general weather
-            const weatherEmbedCity = new Discord.MessageEmbed()
-                .setColor('#00fbff')
-                .setTitle(`${weatherData.name}, ${weatherData.sys.country} Current Weather:`)
-                .addField('Current Temperature:', `${weatherData.main.temp} Fahrenheit`, true)
-                .addField('Current Wind Speed:', `${weatherData.wind.speed} MPH`, true)
-                .addField('Current Conditions:', `${weatherData.weather[0].description}`)
-                .setFooter("Weather Live. ")
-                .setTimestamp();
-
-            message.channel.send(weatherEmbedCity), console.log(`[Weather City Request] ${message.member.user.tag} Requested Weather data from "${args.join(' ')}". Discord ID [${message.member.id}].`);
-        }
+        case 'weather':
+            sendWeather(client, message, args, APIAuth);
+            break;
     }
 });
+
 client.login(token);
 
 // TODO:
