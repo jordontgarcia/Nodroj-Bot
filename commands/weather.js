@@ -2,7 +2,7 @@ import Discord from 'discord.js';
 import axios from 'axios';
 import fs from 'fs';
 
-async function weatherData(client, message, args, APIAuth) { //WHAT
+async function weatherData(client, message, args, APIAuth) {
 
     let getWeatherData = async () => {
         let response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${args.join(' ')}&appid=${APIAuth}&units=imperial`);
