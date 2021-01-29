@@ -34,7 +34,7 @@ client.on("message", async (message) => {
             break;
 
         case 'weather':
-            sendWeather(client, message, args, APIAuth);
+            weatherData(client, message, args, APIAuth);
             break;
     }
 });
