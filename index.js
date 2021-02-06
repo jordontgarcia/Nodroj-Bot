@@ -9,16 +9,16 @@ const client = new Discord.Client();
 
 client.on('ready', () => {
     console.log(`Updated ${client.user.tag}!`);
-    client.user.setPresence({ activity: { name: ".WeatherHelp for info" }, status: "online" }).catch(console.error)
+    client.user.setPresence({ activity: { name: ".WeatherHelp for info" }, status: "idle" }).catch(console.error)
 });
 
 // General help Weather embed
-const weatherEmbedMain = new Discord.MessageEmbed()
+const weatherHelpEmbed = new Discord.MessageEmbed()
     .setColor('#00fbff')
     .setTitle('Weather Live GitHub Repository')
     .setURL('https://github.com/JordonGarcia/WeatherBotDiscord')
-    .setDescription('To view a given cities general weather, use the command .Weather "CityName". For example, you can do ".Weather Miami" for Miami Florida\'s current general weather conditions.')
-    .setImage('https://cdn.dribbble.com/users/823181/screenshots/14958600/media/3b0cf90e738110f6def69aadacc4fc4b.png?compress=1&resize=1000x750')
+    .setDescription('`View a given cities general weather:` \n .Weather "CityName"')
+    .setImage('https://i.ibb.co/cr8735L/Weather-Pro.png')
     .setTimestamp()
     .setFooter('Weather Live.');
 
@@ -30,7 +30,7 @@ client.on("message", async (message) => {
 
     switch (command) {
         case 'weatherhelp':
-            message.channel.send(weatherEmbedMain);
+            message.channel.send(weatherHelpEmbed);
             break;
 
         case 'weather':
