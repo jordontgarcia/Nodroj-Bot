@@ -1,11 +1,12 @@
 import Discord from 'discord.js';
 import axios from 'axios';
 import fs from 'fs';
+import { KToF, KToC, MetersToKPH, MetersToMPH } from '../functions/conversions.js';
 
 async function sendWeather(client, message, args, APIAuth) {
 
     let getWeatherData = async () => {
-        let response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${args.join(' ')}&appid=${APIAuth}&units=imperial`);
+        let response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${args.join(' ')}&appid=${APIAuth}`);
         let weather = response.data;
         return weather;
     };
@@ -24,11 +25,11 @@ async function sendWeather(client, message, args, APIAuth) {
         fields: [
             {
                 name: '`Current Temperature:`',
-                value: `${weatherData.main.temp} Fahrenheit`,
+                value: `${Math.round(KToF(weatherData.main.temp))}\xB0 Fahrenheit \n ${Math.round(KToC(weatherData.main.temp))}\xB0 Celsius`,
             },
             {
                 name: '`Current Wind Speed`',
-                value: `${weatherData.wind.speed} MPH`,
+                value: `${Math.round(MetersToKPH(weatherData.wind.speed))} KPH \n ${Math.round(MetersToMPH(weatherData.wind.speed))} MPH`,
             },
             {
                 name: '`Current Conditions`',
