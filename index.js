@@ -44,7 +44,6 @@ client.login(token);
 // TODO:
 
   // Add API request cool down to prevent overuse and spam.
-  // Remove Imperial on link and make default Fahrenheit, but allow users to request Celsius as well.
   // Require users to specify country/state/province, to make sure they are getting the right location.
   // Add weatherHelp command that contains a key of all commands.
   // Add more information such as .weather exampleCity sunset", or .weather exampleCity All" which display all weather information.
