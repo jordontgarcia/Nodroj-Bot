@@ -2,7 +2,7 @@ import Discord from 'discord.js';
 import axios from 'axios';
 import fs from 'fs';
 
-async function sendWeather(client, message, args, APIAuth) { //WHAT
+async function sendWeather(client, message, args, APIAuth) {
 
     let getWeatherData = async () => {
         let response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${args.join(' ')}&appid=${APIAuth}&units=imperial`);
@@ -12,18 +12,37 @@ async function sendWeather(client, message, args, APIAuth) { //WHAT
 
     let weatherData = await getWeatherData();
 
-    // Displaying specific city general weather
-    const weatherEmbedCity = new Discord.MessageEmbed()
-        .setColor('#00fbff')
-        .setTitle(`${weatherData.name}, ${weatherData.sys.country} Current Weather:`)
-        .addField('Current Temperature:', `${weatherData.main.temp} Fahrenheit`, true)
-        .addField('Current Wind Speed:', `${weatherData.wind.speed} MPH`, true)
-        .addField('Current Conditions:', `${weatherData.weather[0].description}`)
-        .setFooter("Weather Live. ")
-        .setTimestamp();
+    const weatherEmbedCity = {
+        color: 0x0099ff,
+        author: {
+            name: `Weather for ${weatherData.name}, ${weatherData.sys.country}`,
+        },
+        description: 'Current Conditions:',
+        thumbnail: {
+            url: 'https://i.ibb.co/nP4nbR6/Weather-Icon5.png',
+        },
+        fields: [
+            {
+                name: '`Current Temperature:`',
+                value: `${weatherData.main.temp} Fahrenheit`,
+            },
+            {
+                name: '`Current Wind Speed`',
+                value: `${weatherData.wind.speed} MPH`,
+            },
+            {
+                name: '`Current Conditions`',
+                value: `${weatherData.weather[0].description}`,
+            },
+        ],
+        timestamp: new Date(),
+        footer: {
+            text: 'Weather Live',
+        },
+    };
 
-    message.channel.send(weatherEmbedCity)
 
+    message.channel.send({ embed: weatherEmbedCity });
     fs.appendFileSync('logs.txt', `[Weather City Request] ${message.member.user.tag} Requested Weather data from "${args.join(' ')}" - Discord ID [${message.member.id}]` + '\n');
 
 }
