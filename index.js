@@ -41,7 +41,6 @@ client.on("message", async (message) => {
 
 client.login(token);
 
-
 // TODO:
 
   // Add API request cool down to prevent overuse and spam.
