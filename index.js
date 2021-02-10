@@ -12,7 +12,7 @@ client.on('ready', () => {
     client.user.setPresence({ activity: { name: ".WeatherHelp for info" }, status: "idle" }).catch(console.error)
 });
 
-// General help Weather embed
+// .WeatherHelp Embed
 const weatherHelpEmbed = new Discord.MessageEmbed()
     .setColor('#00fbff')
     .setTitle('Weather Live GitHub Repository')
@@ -22,7 +22,7 @@ const weatherHelpEmbed = new Discord.MessageEmbed()
     .setTimestamp()
     .setFooter('Weather Live.');
 
-// Commands
+// Basic Commands
 client.on("message", async (message) => {
     if (!message.content.startsWith(prefix) || message.author.bot) return;
     let args = message.content.toLowerCase().substring(prefix.length).slice().split(/ /);
