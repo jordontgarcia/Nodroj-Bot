@@ -1,6 +1,4 @@
-import Discord from 'discord.js';
 import axios from 'axios';
-import coolDown from '../functions/cooldown.js';
 import fs from 'fs';
 import { KToF, KToC, metersToKPH, metersToMPH } from '../functions/conversions.js';
 
