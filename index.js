@@ -13,14 +13,30 @@ client.on('ready', () => {
 });
 
 // .WeatherHelp Embed
-const weatherHelpEmbed = new Discord.MessageEmbed()
-  .setColor('#00fbff')
-  .setTitle('Weather Live GitHub Repository')
-  .setURL('https://github.com/JordonGarcia/WeatherBotDiscord')
-  .setDescription('`View a given cities general weather:` \n .Weather "CityName"')
-  .setImage('https://i.ibb.co/cr8735L/Weather-Pro.png')
-  .setTimestamp()
-  .setFooter('Weather Live.');
+const weatherHelpEmbed = {
+  color: 0x0099ff,
+  author: {
+    name: 'View a given cities current weather conditions:',
+  },
+  fields: [
+    {
+      name: 'Example use:',
+      value: '*.Weather Miami* \n Will return Miami Florida\'s weather',
+    },
+    {
+      name: 'Github open Source:',
+      value: 'https://github.com/JordonGarcia/WeatherBotDiscord',
+    },
+    {
+      name: 'Data API Provider:',
+      value: 'https://openweathermap.org',
+    }
+  ],
+  timestamp: new Date(),
+  footer: {
+    text: 'Weather Live',
+  },
+};
 
 // Basic Commands
 client.on("message", async (message) => {
@@ -30,11 +46,11 @@ client.on("message", async (message) => {
 
   switch (command) {
     case 'weatherhelp':
-      message.channel.send(weatherHelpEmbed);
+      message.channel.send({ embed: weatherHelpEmbed });
       break;
 
     case 'weather':
-      weatherData(client, message, args, APIAuth);
+      weatherData(message, args, APIAuth);
       break;
   }
 });
