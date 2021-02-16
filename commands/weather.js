@@ -1,6 +1,8 @@
 import axios from 'axios';
 import fs from 'fs';
 import Canvas from 'canvas';
+import countries from '../functions/countries.js';
+import weatherConditions from '../functions/conditions.js';
 import Discord from 'discord.js';
 import { KToF, KToC, metersToKPH, metersToMPH } from '../functions/conversions.js';
 
@@ -15,25 +17,26 @@ async function sendWeather(message, args, APIAuth) {
     let weatherData = await getWeatherData();
     let canvas = Canvas.createCanvas(2100, 1500);
     let ctx = canvas.getContext('2d');
-    let background = await Canvas.loadImage('./media/canvasBackground.jpg')
     let x = canvas.width / 2;
-    ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
+    ctx.lineWidth = 50;
+    ctx.strokeStyle = "#cfcfcf";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.strokeRect(0, 0, canvas.width, canvas.height);
     ctx.textBaseline = "top";
-    ctx.font = "92px Verdana";
+    ctx.font = "90px Verdana";
     ctx.fillStyle = "white";
     ctx.textAlign = "center";
     // Display City
-    ctx.fillText(`Weather conditions for ${weatherData.name}, ${weatherData.sys.country}`, x, 150);
+    ctx.fillText('Weather Conditions For:', x, 160);
+    ctx.fillText(`${weatherData.name}, ${(countries[weatherData.sys.country])}`, x, 290);
     ctx.font = "75px Verdana";
     // Display Temperatures
-    ctx.fillText(`${Math.round(KToF(weatherData.main.temp))}\xB0 Fahrenheit, ${Math.round(KToC(weatherData.main.temp))}\xB0 Celsius`, x, 580);
-    ctx.font = "75px Verdana";
+    ctx.fillText(`${Math.round(KToF(weatherData.main.temp))}\xB0 Fahrenheit, ${Math.round(KToC(weatherData.main.temp))}\xB0 Celsius`, x, 590);
     // Display wind conditions
-    ctx.fillText(` Wind conditions: ${Math.round(metersToMPH(weatherData.wind.speed))} MPH, ${Math.round(metersToKPH(weatherData.wind.speed))} KPH`, x, 710);
+    ctx.fillText(` Wind Conditions: ${Math.round(metersToMPH(weatherData.wind.speed))} MPH, ${Math.round(metersToKPH(weatherData.wind.speed))} KPH`, x, 720);
     var attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'ExampleImage.jpg');
-    ctx.font = "75px Verdana";
     // Display description
-    ctx.fillText(`Current Conditions: ${weatherData.weather[0].description}`, x, 830);
+    ctx.fillText(`Current Conditions: ${(weatherConditions[weatherData.weather[0].description])}`, x, 840);
     var attachment = new Discord.MessageAttachment(canvas.toBuffer(), `${weatherData.name}.jpeg`);
     // Send the weather result
     message.channel.send(attachment);
