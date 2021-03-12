@@ -1,5 +1,3 @@
-# WeatherBotDiscord
-
 # This Bot ustilizes Discord.js and npm packages
 
  # Installing required packages:
