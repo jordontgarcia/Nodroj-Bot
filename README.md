@@ -1,4 +1,4 @@
-# This Bot ustilizes Discord.js and npm packages
+# This Bot utilizes Discord.js and npm packages
 
  # Installing required packages:
  - npm i axios
