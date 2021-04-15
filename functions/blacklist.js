@@ -1,1 +1,0 @@
-// TODO: Block users from being able to use the bot via putting their ID here (For spammers, etc)

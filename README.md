@@ -1,12 +1,18 @@
 # WeatherBotDiscord
 
-# Version Alpha 0.0.5 (Earlier updates not recorded)
+# To install WeatherBot with Node.js v14
+  » In Terminal
+   ### `git clone https://github.com/JordonGarcia/jordongarcia.com`
+   ### `npm i yarn -S`
 
- - Added simple white border around canvas card
- - Changed country abbreviations to full name
- - Added ability to search for cities with a space in the name (Ex. San Francisco)
- - Fixed issue with words being misaligned based on sentence length
- - Added custom weather descriptions
- - Adjusted Canvas text font size
 
-Released 2.15.2021
+
+# To run the bot locally (Development Mode using Nodemon)
+  » In Terminal
+   ### `yarn dev`
+
+
+
+# To run the bot locally (Production Mode)
+  » In Terminal
+   ### `yarn start`

@@ -1,4 +1,4 @@
-let countries = {
+let country = {
     AF: 'Afghanistan',
     AX: 'Aland Islands',
     AL: 'Albania',
@@ -246,4 +246,4 @@ let countries = {
     ZW: 'Zimbabwe'
 }
 
-export default countries;
+export default country;
