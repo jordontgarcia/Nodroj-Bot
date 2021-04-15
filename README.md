@@ -1,6 +1,6 @@
 # To install WeatherBot with Node.js v14
   » In Terminal
-   ### `git clone https://github.com/JordonGarcia/jordongarcia.com`
+   ### `git clone https://github.com/JordonGarcia/WeatherBotDiscord`
    ### `npm i yarn -S`
 
 
