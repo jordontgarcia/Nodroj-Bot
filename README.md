@@ -1,4 +1,4 @@
-# WeatherBotDiscord
+# This Bot utilizes Discord.js and npm packages
 
 # To install WeatherBot with Node.js v14
   » In Terminal
