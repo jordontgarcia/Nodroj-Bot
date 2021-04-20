@@ -2,7 +2,7 @@
 <br/>
 <p align="center">
   <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="./media/nodroj.png" alt="Nodroj logo failed to load" width="80" height="80">
+    <img src="https://i.ibb.co/nj9z0B2/Nodroj.webp" alt="Nodroj logo failed to load" width="80" height="80">
   </a>
 
   <h3 align="center">Nodroj Bot</h3>
