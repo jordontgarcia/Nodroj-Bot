@@ -3,8 +3,12 @@ import fs from 'fs';
 import Canvas from 'canvas';
 import country from '../../data/countries.js';
 import weatherConditions from '../functions/conditions.js';
+// import newTimeZone from '../functions/time.js';
 import Discord from 'discord.js';
 import { KToF, KToC, metersToKPH, metersToMPH } from '../functions/conversions.js';
+// const location = JSON.parse(fs.readFileSync("../data/locations.json"));
+// const zipCode = location.cities;
+// const state = location.name;
 
 async function sendWeather(message, args, APIAuth) {
     // Fetch API weather data
@@ -13,6 +17,25 @@ async function sendWeather(message, args, APIAuth) {
         let weather = response.data;
         return weather;
     };
+
+
+    // function getObjectByPropertyValue(zipCode, cities) {
+    //     let location;
+
+    //     for (let zipCode in location) {
+    //         let item = location[zipCode];
+
+    //         if (item[property] === cities) {
+    //             location = item;
+    //             break;
+    //         }
+    //     }
+
+    //     return location
+    // }
+
+    // console.log(getObjectByPropertyValue('', ''));
+
 
     let weatherData = await getWeatherData();
     let canvas = Canvas.createCanvas(2100, 1500);
@@ -38,6 +61,8 @@ async function sendWeather(message, args, APIAuth) {
     // Display wind conditions
     ctx.fillText(` Wind Conditions: ${Math.round(metersToMPH(weatherData.wind.speed))} MPH, ${Math.round(metersToKPH(weatherData.wind.speed))} KPH`, x, 920);  // 130 Y axis spacing
     var attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'ExampleImage.jpg');
+    // ctx.fillText(`Current Time: ${(newTimeZone[weatherData.timezone])}`, 1500, 1320);
+    // ctx.fillText(`Current Time: ${weatherData.timezone}`, 1500, 1320);
     var attachment = new Discord.MessageAttachment(canvas.toBuffer(), `${weatherData.name}.jpeg`);
     // Send the weather result
     message.channel.send(attachment);
